@@ -8,7 +8,7 @@ code[2] = 2;
 const main = (code) => {
   try {
     const { inputCode, outputCode } = intCodeRunner(code.map((n) => +n));
-    console.log("Input Code", inputCode);
+    // console.log("Input Code", inputCode);
     console.log("Output Code", outputCode);
   } catch (err) {
     console.error(err);

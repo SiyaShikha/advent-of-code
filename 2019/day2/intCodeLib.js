@@ -1,21 +1,21 @@
 import { Memory } from "./memory.js";
-import { commands } from "./commands.js";
+import { instructions } from "./instructions.js";
 
-const execute = (memory, programCounter) => {
-  const command = memory.getCellValue(programCounter);
+const execute = (memory, instructionCounter) => {
+  const command = memory.getCellValue(instructionCounter);
 
-  if (!(command in commands)) {
+  if (!(command in instructions)) {
     throw { type: "invalid code", msg: "Check your input and try again!" };
   }
-  return commands[command](memory, programCounter);
+  return instructions[command](memory, instructionCounter);
 };
 
 const intCodeRunner = (rawInputCode) => {
   const memory = new Memory(rawInputCode);
-  let programCounter = 0;
+  let instructionCounter = 0;
 
-  while (memory.getCellValue(programCounter) !== 99) {
-    programCounter = execute(memory, programCounter);
+  while (memory.getCellValue(instructionCounter) !== 99) {
+    instructionCounter = execute(memory, instructionCounter);
   }
 
   return { inputCode: rawInputCode, outputCode: memory.getData() };
